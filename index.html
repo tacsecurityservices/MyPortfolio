@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin Ndava - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling application. The structure is designed for a narrative user flow: 1. Hero section for immediate impact. 2. A more detailed About section. 3. New skills and certifications section to showcase qualifications. 4. A new section for technical/web development projects. 5. An interactive timeline for copywriting portfolio exploration, allowing users to select a project to view details. 6. A dynamic chart to visually represent the "results-driven" claim. 7. A final contact section. This structure guides the user from who Calvin is, what he knows, what he's done (technical and creative), the impact of his work, and finally to how to connect. -->
+    <!-- Visualization & Content Choices: Report Info: Portfolio projects by year -> Goal: Organize & Explore -> Viz/Method: Interactive vertical timeline (HTML/CSS/JS) -> Interaction: User clicks a year/project to display its details in a central pane. Justification: This is more engaging than a long scroll and allows users to focus on what interests them. Report Info: "Results-driven" claim -> Goal: Compare & Demonstrate Impact -> Viz/Method: Bar Chart (Chart.js) -> Interaction: Hover tooltips show specific metrics. Justification: Visually substantiates the key value proposition of a direct response copywriter. Library: Chart.js for its simplicity and responsiveness. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #403d39;
+        }
+        .accent-color {
+            background-color: #A0522D;
+        }
+        .accent-text {
+            color: #A0522D;
+        }
+        .nav-item.active {
+            background-color: #A0522D;
+            color: #FFFFFF;
+        }
+        .nav-item {
+            transition: all 0.3s ease;
+        }
+        .content-card {
+            background-color: #FFFFFF;
+            border-left: 4px solid #A0522D;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <header class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight">Calvin Ndava</h1>
+            <h2 class="mt-2 text-xl md:text-2xl font-semibold accent-text">All Mye Recent Works</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">I craft compelling copy that drives action, builds trust, and delivers a clear return on investment.</p>
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="mailto:kelvi.ndaba@icloud.com" class="px-6 py-3 bg-[#A0522D] text-white font-semibold rounded-lg shadow-md hover:bg-[#8B4513] transition-colors">Get In Touch</a>
+                <a href="#portfolio" class="px-6 py-3 bg-white text-[#A0522D] font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-colors">View My Work</a>
+            </div>
+        </header>
+
+        <section id="about" class="py-16 md:py-20 border-t border-gray-200">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">About Me</h2>
+                <p class="mt-2 text-lg text-gray-600">Turning features into irresistible benefits.</p>
+            </div>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-2 text-center">
+                     <div class="inline-block rounded-full bg-gray-200 p-2">
+                        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gray-300 flex items-center justify-center">
+                           <span class="text-6xl text-gray-500">CN</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-3 text-gray-700 text-base leading-relaxed">
+                    <p>I am a results-driven direct response copywriter with over three years of experience. My work is data-informed and focused on delivering a clear return on investment for my clients.</p>
+                    <p class="mt-4">Specializing in email marketing, landing pages, and long-form sales letters, I translate complex product features into compelling narratives that build trust and convert prospects into loyal customers.</p>
+                     <div class="mt-6">
+                        <h3 class="font-semibold text-lg mb-2">Contact Details:</h3>
+                        <p><strong>Email:</strong> <a href="mailto:kelvin.ndaba@icloud.com" class="accent-text hover:underline">calvin.ndava@example.com</a></p>
+                        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/calvin-ndava" target="_blank" class="accent-text hover:underline">linkedin.com/in/calvin-ndava</a></p>
+                        <p><strong>Website:</strong> <a href="https://calvinndava.com" target="_blank" class="accent-text hover:underline">calvinndava.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 md:py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Skills & Certifications</h2>
+                <p class="mt-2 text-lg text-gray-600">A look at my professional qualifications and technical expertise.</p>
+            </div>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 text-gray-700">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 accent-text">CERTIFICATIONS</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <p class="font-semibold">CompTIA A+</p>
+                            <p class="text-sm mt-1">Entry-level certification for IT technicians, covering mobile devices, networking technology, hardware, virtualization, cloud computing, and network troubleshooting. Ideal for IT support roles.</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Cisco CCNA</p>
+                            <p class="text-sm mt-1">Validates skills in networking fundamentals, IP services, security fundamentals, automation, and programmability. A foundational certification for network engineers.</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Microsoft Certified: Azure Administrator Associate</p>
+                            <p class="text-sm mt-1">Validates skills needed to implement, manage, and monitor Microsoft Azure environments, covering virtual networks, storage, compute, identity, and security.</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Certified Information Systems Security Professional (CISSP)</p>
+                            <p class="text-sm mt-1">Globally recognized certification in information security, validating expertise across 8 domains of the (ISC)² CISSP Common Body of Knowledge (CBK), including security and risk management, asset security, and security operations.</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Google Analytics Individual Qualification (GAIQ)</p>
+                            <p class="text-sm mt-1">Demonstrates proficiency in using Google Analytics to measure, analyze, and report on website traffic and online marketing performance.</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">EDUCBA Digital Marketing Course Certificate</p>
+                            <p class="text-sm mt-1">Successfully completed a comprehensive digital marketing course.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 accent-text">TECHNICAL SKILLS</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <p class="font-semibold">Operating Systems</p>
+                            <p class="text-sm mt-1">Windows and Linux Server Environments</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Networking</p>
+                            <p class="text-sm mt-1">Network Administration, IP Services, Network Troubleshooting</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Cloud Platforms</p>
+                            <p class="text-sm mt-1">Microsoft Azure (Administration, Virtual Networks, Storage, Compute, Identity, Security)</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Cybersecurity</p>
+                            <p class="text-sm mt-1">Cybersecurity Best Practices and Tools, Security Fundamentals, Security Operations</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">IT Service Management</p>
+                            <p class="text-sm mt-1">ITIL Framework Knowledge</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Project Management</p>
+                            <p class="text-sm mt-1">Project Planning, Execution, Budgeting, Timeline Management</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Data Management</p>
+                            <p class="text-sm mt-1">Accurate Record Keeping, Data Analysis, Reporting</p>
+                        </li>
+                        <li>
+                            <p class="font-semibold">Software Proficiency</p>
+                            <p class="text-sm mt-1">Enterprise Resource Planning (ERP) systems, Google Analytics, various office productivity suites.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="technical-projects" class="py-16 md:py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Technical Projects</h2>
+                <p class="mt-2 text-lg text-gray-600">A showcase of my web development and technical skills.</p>
+            </div>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold accent-text mb-2">Task Management Tool</h3>
+                    <p class="text-gray-700">A functional application designed to streamline task organization and tracking.</p>
+                    <a href="https://tacsecurityservices.github.io/Task-Manager/" target="_blank" class="mt-4 inline-block px-4 py-2 text-sm bg-[#A0522D] text-white font-semibold rounded-md hover:bg-[#8B4513] transition-colors">View Live Site</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold accent-text mb-2">Cloudsoft Company Website</h3>
+                    <p class="text-gray-700">A fully functional and dynamic website showcasing my ability to create robust web presences.</p>
+                    <a href="https://tacsecurityservices.github.io/Cloudsoft/" target="_blank" class="mt-4 inline-block px-4 py-2 text-sm bg-[#A0522D] text-white font-semibold rounded-md hover:bg-[#8B4513] transition-colors">View Live Site</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold accent-text mb-2">CloudSoft Management System</h3>
+                    <p class="text-gray-700">A comprehensive system demonstrating my capabilities in building more complex, interactive web solutions.</p>
+                    <a href="https://tacsecurityservices.github.io/CloudSoft-Management-System/" target="_blank" class="mt-4 inline-block px-4 py-2 text-sm bg-[#A0522D] text-white font-semibold rounded-md hover:bg-[#8B4513] transition-colors">View Live Site</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-16 md:py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Portfolio Highlights</h2>
+                <p class="mt-2 text-lg text-gray-600">Click on a project to see the details.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 lg:gap-12 max-w-6xl mx-auto">
+                <nav class="md:w-1/4">
+                    <ul id="portfolio-nav" class="space-y-2">
+                        <li><a href="#" class="nav-item block w-full text-left px-4 py-3 rounded-md font-semibold" data-target="proj-2025">Current (2025)</a></li>
+                        <li><a href="#" class="nav-item block w-full text-left px-4 py-3 rounded-md font-semibold" data-target="proj-2024">2024</a></li>
+                        <li><a href="#" class="nav-item block w-full text-left px-4 py-3 rounded-md font-semibold" data-target="proj-2023">2023</a></li>
+                        <li><a href="#" class="nav-item block w-full text-left px-4 py-3 rounded-md font-semibold" data-target="proj-2022">2022</a></li>
+                    </ul>
+                </nav>
+
+                <div id="portfolio-content" class="md:w-3/4">
+                    <div id="proj-2025" class="portfolio-item content-card p-6 md:p-8 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-bold accent-text">E-commerce Product Description Strategy</h3>
+                        <p class="text-sm font-semibold text-gray-500 mt-1">Client: Artisan Home Decor</p>
+                        <p class="mt-4 text-gray-700">Developed a series of persuasive product descriptions for a new line of handcrafted home goods. Each description was crafted to tell a story, evoke emotion, and highlight the unique value of the product, moving beyond simple features.</p>
+                        <div class="mt-6 border-t border-gray-200 pt-4">
+                            <h4 class="font-semibold mb-2">Copy Excerpt:</h4>
+                            <blockquote class="border-l-4 border-gray-200 pl-4 italic text-gray-600">
+                                <p class="font-bold">The "Morning Sun" Ceramic Mug</p>
+                                <p>Start your day with a touch of warmth. Handcrafted by local artisans, this mug is more than just a vessel for your coffee—it's a ritual. Its gentle curves and rich, earthy glaze feel perfectly balanced in your hands, a tactile reminder to slow down and savor the moment. This isn't just a mug; it's the perfect companion for your quiet mornings and reflective evenings.</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div id="proj-2024" class="portfolio-item content-card p-6 md:p-8 rounded-lg shadow-sm hidden">
+                        <h3 class="text-2xl font-bold accent-text">"Boost Your Brainpower" - Landing Page</h3>
+                        <p class="text-sm font-semibold text-gray-500 mt-1">Client: Peak Performance Labs</p>
+                        <p class="mt-4 text-gray-700">A high-converting landing page for a nootropic supplement. The copy focused on specific, tangible benefits like improved focus, memory retention, and mental clarity, using scientific backing and customer testimonials to build credibility.</p>
+                        <div class="mt-6 border-t border-gray-200 pt-4">
+                            <h4 class="font-semibold mb-2">Copy Excerpt:</h4>
+                            <blockquote class="border-l-4 border-gray-200 pl-4 italic text-gray-600">
+                                <p class="font-bold">Struggling to focus? You’re not alone. But you can change it.</p>
+                                <p>In today's fast-paced world, staying sharp and focused is a challenge. But what if you could naturally enhance your cognitive function? Introducing *CogniMax*, the all-natural supplement designed to support your brain health...</p>
+                                <ul class="list-disc list-inside mt-2">
+                                    <li>Sharpen your focus for hours at a time.</li>
+                                    <li>Recall information faster and with greater accuracy.</li>
+                                    <li>Reduce mental fatigue and feel energized throughout the day.</li>
+                                </ul>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div id="proj-2023" class="portfolio-item content-card p-6 md:p-8 rounded-lg shadow-sm hidden">
+                        <h3 class="text-2xl font-bold accent-text">"Financial Freedom Blueprint" - Long-Form Sales Letter</h3>
+                        <p class="text-sm font-semibold text-gray-500 mt-1">Client: WealthWise Academy</p>
+                        <p class="mt-4 text-gray-700">A comprehensive sales letter for a premium online course on personal finance. The copy targeted individuals feeling overwhelmed by debt and financial instability, using emotional triggers and a strong narrative to guide them toward a clear, actionable solution.</p>
+                        <div class="mt-6 border-t border-gray-200 pt-4">
+                            <h4 class="font-semibold mb-2">Copy Excerpt:</h4>
+                            <blockquote class="border-l-4 border-gray-200 pl-4 italic text-gray-600">
+                                <p class="font-bold">Are you tired of living paycheck to paycheck?</p>
+                                <p>The constant stress. The sleepless nights. The feeling that no matter how hard you work, you're always one emergency away from financial disaster. It doesn't have to be this way. The *Financial Freedom Blueprint* isn't just another course. It's a roadmap. It’s a proven system that has helped hundreds of people just like you take control of their money and build a future they can be proud of.</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div id="proj-2022" class="portfolio-item content-card p-6 md:p-8 rounded-lg shadow-sm hidden">
+                        <h3 class="text-2xl font-bold accent-text">"Unlock Your Potential" - Email Funnel</h3>
+                        <p class="text-sm font-semibold text-gray-500 mt-1">Client: InnovateGrowth Solutions</p>
+                        <p class="mt-4 text-gray-700">A 5-part email sequence designed to build anticipation and drive sign-ups for a new project management platform. The goal was to educate the audience on the pain points of current solutions and position the new platform as the definitive answer.</p>
+                        <div class="mt-6 border-t border-gray-200 pt-4">
+                            <h4 class="font-semibold mb-2">Copy Excerpt:</h4>
+                            <blockquote class="border-l-4 border-gray-200 pl-4 italic text-gray-600">
+                                <p class="font-bold">Subject: The biggest secret to hitting your project deadlines...</p>
+                                <p>Did you know that most project teams fail to meet their deadlines not because they lack talent, but because they lack a single source of truth? Imagine having all your tasks, team communication, and progress reports in one seamless dashboard. No more endless status meetings. No more hunting for files.</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="py-16 md:py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Demonstrated Impact</h2>
+                <p class="mt-2 text-lg text-gray-600">Visualizing the results of effective copy.</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="resultsChart"></canvas>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-4">This chart shows the typical uplift in key metrics from different types of copywriting projects. Hover over the bars for more details.</p>
+        </section>
+
+        <footer class="text-center py-10 border-t border-gray-200">
+            <h3 class="text-2xl font-bold">Ready to boost your conversions?</h3>
+            <p class="mt-2 text-gray-600 max-w-xl mx-auto">Let's work together to create copy that not only engages but also delivers measurable results.</p>
+            <div class="mt-6">
+                 <a href="mailto:calvin.ndava@example.com" class="px-8 py-3 bg-[#A0522D] text-white font-semibold rounded-lg shadow-md hover:bg-[#8B4513] transition-colors">Contact Me</a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Calvin Ndava. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('#portfolio-nav a');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            function showItem(targetId) {
+                portfolioItems.forEach(item => {
+                    if (item.id === targetId) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    if (link.dataset.target === targetId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.dataset.target;
+                    showItem(targetId);
+                });
+            });
+
+            showItem('proj-2025');
+
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            const resultsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Email Funnel', 'Landing Page', 'Sales Letter', 'Product Descriptions'],
+                    datasets: [{
+                        label: 'Conversion Rate Uplift (%)',
+                        data: [25, 18, 12, 30],
+                        backgroundColor: 'rgba(160, 82, 45, 0.7)',
+                        borderColor: 'rgba(160, 82, 45, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Metric Uplift'
+                            }
+                        },
+                        x: {
+                           title: {
+                                display: true,
+                                text: 'Project Type'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
